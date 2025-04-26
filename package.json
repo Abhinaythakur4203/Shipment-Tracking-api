@@ -1,0 +1,23 @@
+{
+  "name": "shipment-tracking-system",
+  "version": "1.0.0",
+  "description": "Shipment tracking web app",
+  "main": "index.js",
+  "scripts": {
+    "test": "dev"
+  },
+  "keywords": [
+    "shipment",
+    "tracking",
+    "cargo",
+    "delhivery"
+  ],
+  "author": "Abhinay",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.13.2"
+  }
+}
