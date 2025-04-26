@@ -16,4 +16,9 @@ app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
+import shipmentRoutes from "./routes/shipment.routes.js";
+
+app.use("/api/v1/shipments", shipmentRoutes);
+
 export { app };
