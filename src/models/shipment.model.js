@@ -14,6 +14,8 @@ const shipmentSchema = new Schema({
         lat: Number,
         lng: Number,
         locationName: String,
+        isCurrent: Boolean,
+        _id: false, 
     }],
     currentLocation: {
         type: {
@@ -21,7 +23,8 @@ const shipmentSchema = new Schema({
             lng: Number,
             locationName: String,
         },
-        required: true, 
+        required: true,
+        _id: false, 
     },
     currentETA: {
         type: Date,
