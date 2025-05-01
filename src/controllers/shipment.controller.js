@@ -22,6 +22,17 @@ const createShipment = asyncHandler(async (req, res) => {
     res.status(201).json(new ApiResponse(201, shipment, "Shipment created successfully"));
 });
 
+const getAllShipments = asyncHandler(async (req, res) => {
+
+    const shipments = await Shipment.find({}).sort({ createdAt: -1 });
+
+    if (!shipments || shipments.length === 0) {
+        throw new ApiError(404, "No shipments found");
+    }
+    res.status(200).json(new ApiResponse(200, shipments, "Shipments retrieved successfully"));
+});
+
+
 const getShipmentById = asyncHandler(async (req, res) => {
     const { shipmentId } = req.params;
 
@@ -115,5 +126,6 @@ export {
     updateShipment,
     updateShipmentLocation,
     getShipmentETA,
-    deleteShipment
+    deleteShipment,
+    getAllShipments,
 };

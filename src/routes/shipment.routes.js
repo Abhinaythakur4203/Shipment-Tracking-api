@@ -6,12 +6,16 @@ import {
     updateShipmentLocation,
     deleteShipment,
     getShipmentETA,
+    getAllShipments,
 } from "../controllers/shipment.controller.js";
 
 const router = Router();
 
 // Create a new shipment
 router.post("/", createShipment);
+
+// Get all shipments
+router.get("/",getAllShipments);
 
 // Get a shipment by ID
 router.get("/:shipmentId", getShipmentById);
