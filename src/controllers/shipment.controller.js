@@ -23,15 +23,30 @@ const createShipment = asyncHandler(async (req, res) => {
 });
 
 const getAllShipments = asyncHandler(async (req, res) => {
+    const { page = 1, limit = 10 } = req.query; // Default to page 1 and limit 10
 
-    const shipments = await Shipment.find({}).sort({ createdAt: -1 });
+    const skip = (page - 1) * limit; // Calculate the number of documents to skip
+
+    const shipments = await Shipment.find({})
+        .sort({ createdAt: -1 })
+        .skip(skip)
+        .limit(parseInt(limit));
+
+    const totalShipments = await Shipment.countDocuments(); // Get the total number of shipments
 
     if (!shipments || shipments.length === 0) {
         throw new ApiError(404, "No shipments found");
     }
-    res.status(200).json(new ApiResponse(200, shipments, "Shipments retrieved successfully"));
-});
 
+    res.status(200).json(
+        new ApiResponse(200, {
+            shipments,
+            totalShipments,
+            totalPages: Math.ceil(totalShipments / limit),
+            currentPage: parseInt(page),
+        }, "Shipments retrieved successfully")
+    );
+});
 
 const getShipmentById = asyncHandler(async (req, res) => {
     const { shipmentId } = req.params;

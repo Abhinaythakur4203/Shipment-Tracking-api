@@ -11,25 +11,25 @@ import {
 
 const router = Router();
 
-// Create a new shipment
+// Shipment creation
 router.post("/", createShipment);
 
-// Get all shipments
-router.get("/",getAllShipments);
+// Retrieve all shipments with pagination (query params: page, limit)
+router.get("/", getAllShipments);
 
-// Get a shipment by ID
+// Retrieve a specific shipment by ID
 router.get("/:shipmentId", getShipmentById);
 
-// Update a shipment's details
+// Update shipment details (full update)
 router.put("/:shipmentId", updateShipment);
 
-// Update a shipment's location
+// Update shipment location (partial update)
 router.patch("/:shipmentId/location", updateShipmentLocation);
 
-// Get the ETA of a shipment
+// Retrieve the ETA of a specific shipment
 router.get("/:shipmentId/eta", getShipmentETA);
 
-// Delete a shipment
+// Delete a shipment by ID
 router.delete("/:shipmentId", deleteShipment);
 
 export default router;
