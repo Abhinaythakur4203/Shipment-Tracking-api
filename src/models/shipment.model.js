@@ -13,7 +13,7 @@ const shipmentSchema = new Schema({
     route: [{
         lat: Number,
         lng: Number,
-        locationName: String,
+        name: String,
         isCurrent: Boolean,
         _id: false, 
     }],
